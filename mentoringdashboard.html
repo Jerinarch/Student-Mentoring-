@@ -401,6 +401,7 @@
         <p>© 2025 Christ Mentoring. All rights reserved.</p>
     </footer>
 
+    <script src="frontend-config.js"></script>
     <script>
         // Check authentication and load data
         window.addEventListener('load', async () => {
@@ -416,7 +417,7 @@
         async function loadProfileData() {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('/api/student/profile', {
+                const response = await fetch(apiUrl('/student/profile'), {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'

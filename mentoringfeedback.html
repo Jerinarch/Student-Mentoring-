@@ -81,6 +81,7 @@
     <p>© 2025 Christ Mentoring. All rights reserved.</p>
   </footer>
 
+  <script src="frontend-config.js"></script>
   <script>
     let selectedRating = 0;
 
@@ -98,7 +99,7 @@
     async function loadUserData() {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('/api/auth/profile', {
+        const response = await fetch(apiUrl('/auth/profile'), {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -167,7 +168,7 @@
 
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('/api/feedback', {
+        const response = await fetch(apiUrl('/feedback'), {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

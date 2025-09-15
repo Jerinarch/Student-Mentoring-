@@ -137,6 +137,7 @@
     <p>© 2025 Christ Mentoring. All rights reserved.</p>
   </footer>
 
+  <script src="frontend-config.js"></script>
   <script>
     // Check authentication
     window.addEventListener('load', async () => {
@@ -153,7 +154,7 @@
     async function loadDashboardData() {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('/api/student/dashboard', {
+        const response = await fetch(apiUrl('/student/dashboard'), {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
