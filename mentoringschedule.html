@@ -398,7 +398,10 @@
           meetings = data.meetings;
           updateMeetingsDisplay();
         } else {
-          console.error('Failed to load meetings');
+          const text = await response.text();
+          let data; try { data = JSON.parse(text); } catch { data = { message: text || 'Unknown error' }; }
+          console.error('Meetings load failed:', { status: response.status, data });
+          alert((data.message || 'Failed to load meetings') + `\nStatus: ${response.status}`);
         }
       } catch (error) {
         console.error('Error loading meetings:', error);
@@ -511,8 +514,10 @@
           await loadMeetings();
           updateCalendarWithMeetings();
         } else {
-          const error = await response.json();
-          alert("Error creating meeting: " + error.message);
+          const text = await response.text();
+          let error; try { error = JSON.parse(text); } catch { error = { message: text || 'Unknown error' }; }
+          console.error('Create meeting failed:', { status: response.status, error });
+          alert((error.message || 'Error creating meeting') + `\nStatus: ${response.status}`);
         }
       } catch (error) {
         console.error('Error creating meeting:', error);
@@ -538,8 +543,10 @@
           await loadMeetings();
           updateCalendarWithMeetings();
         } else {
-          const error = await response.json();
-          alert("Error deleting meeting: " + error.message);
+          const text = await response.text();
+          let error; try { error = JSON.parse(text); } catch { error = { message: text || 'Unknown error' }; }
+          console.error('Delete meeting failed:', { status: response.status, error });
+          alert((error.message || 'Error deleting meeting') + `\nStatus: ${response.status}`);
         }
       } catch (error) {
         console.error('Error deleting meeting:', error);
@@ -581,8 +588,10 @@
           await loadMeetings();
           updateCalendarWithMeetings();
         } else {
-          const error = await response.json();
-          alert("Error updating meeting: " + error.message);
+          const text = await response.text();
+          let error; try { error = JSON.parse(text); } catch { error = { message: text || 'Unknown error' }; }
+          console.error('Update meeting failed:', { status: response.status, error });
+          alert((error.message || 'Error updating meeting') + `\nStatus: ${response.status}`);
         }
       } catch (error) {
         console.error('Error updating meeting:', error);
