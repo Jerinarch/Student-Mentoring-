@@ -43,6 +43,19 @@
     </div>
   </div>
 
+  <script>
+    // Fallback config if frontend-config.js fails to load
+    if (typeof window.__BACKEND_BASE_URL__ === 'undefined') {
+      window.__BACKEND_BASE_URL__ = "https://student-mentoring-backend.vercel.app/api";
+    }
+    function apiUrl(path) {
+      const base = window.__BACKEND_BASE_URL__ || "";
+      if (!base) return path;
+      const url = base.replace(/\/$/, '') + path;
+      console.log('API URL:', url);
+      return url;
+    }
+  </script>
   <script src="frontend-config.js"></script>
   <script>
     // Check if user is already logged in
