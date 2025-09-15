@@ -51,6 +51,12 @@
       if (token) {
         window.location.href = 'index.html';
       }
+
+      // quick backend health check to surface issues
+      fetch(apiUrl('/health'))
+        .then(r => r.json())
+        .then(info => console.log('Backend health:', info))
+        .catch(err => console.warn('Backend not reachable:', err));
     });
 
     async function signIn() {
