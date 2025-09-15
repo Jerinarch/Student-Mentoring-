@@ -6,7 +6,9 @@ window.__BACKEND_BASE_URL__ = "https://student-mentoring-backend.vercel.app/api"
 function apiUrl(path) {
   const base = window.__BACKEND_BASE_URL__ || "";
   if (!base) return path; // fallback for local dev proxy
-  return base.replace(/\/$/, '') + path;
+  const url = base.replace(/\/$/, '') + path;
+  console.log('API URL:', url); // Debug log
+  return url;
 }
 
 
